@@ -1,1 +1,14 @@
-<p>images-list works!</p>
+<div fxLayout="column">
+    <form *ngIf="this.filterForm" fxFlex="100" [formGroup]="filterForm">
+        <app-text-dynamic-input [name]="this.SEARCH_IMAGE" [form]="this.filterForm" [placeholder]="'Buscar imagen'"
+            [loadResources]="loadImagesByDescription">
+        </app-text-dynamic-input>
+    </form>
+
+    <ng-container *ngIf="(this.images$ | async)">
+        <div fxLayout="row wrap">
+            <img *ngFor="let image of (this.images$ | async)" [src]="image.urls.small">
+        </div>
+    </ng-container>
+    <button mat-button (click)="onLoadMore()">Cargar más</button>
+</div>
