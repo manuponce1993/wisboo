@@ -22,7 +22,6 @@ export class BaseState {
     cleanStore: () => void = () => {
         const properties = Object.entries(this.store);
         setTimeout(() => {
-            console.log('Se registró');
             properties.forEach(([propertie, _]) => {
                 this.store[propertie].next(null);
             })
