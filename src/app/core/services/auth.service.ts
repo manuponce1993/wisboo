@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-   public readonly ACCESS_KEY = 'qhYNmWbMcgdE8B1yGQbuH4P1KMdfP7J3FZsOJ2hxtdc';
+   readonly ACCESS_KEY = 'qhYNmWbMcgdE8B1yGQbuH4P1KMdfP7J3FZsOJ2hxtdc';
 
    constructor() { }
 }

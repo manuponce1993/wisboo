@@ -1,1 +1,3 @@
-<p>my-images works!</p>
+<ng-container *ngIf="(this.myImages$ | async)">
+    <app-list-images [images]="(this.myImages$ | async)" (unsaveImage)="this.onUnsaveImage($event)"></app-list-images>
+</ng-container>

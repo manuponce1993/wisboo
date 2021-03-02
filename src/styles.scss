@@ -22,12 +22,24 @@ $wisboo-accent: mat-palette($mat-indigo, A200, A100, A400);
 $wisboo-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$wisboo-theme: mat-light-theme($wisboo-primary, $wisboo-accent, $wisboo-warn);
+$wisboo-theme: mat-dark-theme($wisboo-primary, $wisboo-accent, $wisboo-warn);
+
+// Custom colors tramon
+$custom-colors: (
+   cc-grey: mat-palette($mat-grey, 500),
+);
+$wisboo-theme: map-merge(
+   $wisboo-theme,
+   (
+      custom-colors: $custom-colors,
+   )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($wisboo-theme);
+@include color-mixins($wisboo-theme);
 
 /* You can add global styles to this file, and also import other style files */
 

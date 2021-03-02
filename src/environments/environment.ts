@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUnsplashService: 'https://api.unsplash.com/',
+  apiUnsplashService: 'https://api.unsplash.com',
 };
 
 /*

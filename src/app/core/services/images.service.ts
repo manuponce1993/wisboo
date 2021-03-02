@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APIS } from 'src/app/shared/enums/apis';
 import { HttpBaseResponse } from 'src/app/shared/models/httpBaseResponse';
@@ -40,6 +40,25 @@ export class ImagesService {
                return response.body;
             }),
          );
+   }
+
+   getImage(id: string): Observable<any> {
+      const queryHeaders = new HttpHeaders().append('Content-Type', 'application/json');
+      return this.http
+         .get<any>(`${environment.apiUnsplashService}${APIS.IMAGE_BY_ID}/${id}`, {
+            headers: queryHeaders,
+            observe: 'response',
+         })
+         .pipe<any>(
+            map<HttpResponse<any>, any>((response) => {
+               return response.body;
+            }),
+         );
+   }
+
+   getImagesById(ids: string[]): Observable<any[]> {
+      return forkJoin(
+         ids.map((id) => this.getImage(id)));
    }
 
    getImagesByLink(link: string): Observable<HttpBaseResponse<any>> {
