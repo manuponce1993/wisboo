@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const material = [
    MatButtonModule,
@@ -15,7 +17,9 @@ const material = [
    MatSnackBarModule,
    MatFormFieldModule,
    MatInputModule,
-   ReactiveFormsModule
+   MatProgressSpinnerModule,
+   ReactiveFormsModule,
+   MatTooltipModule
 ];
 
 const flexLayout = [FlexLayoutModule];

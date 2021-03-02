@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ImagesFacade, MetaDataImages } from 'src/app/abstraction/images.facade';
+import { Image } from 'src/app/shared/models/image';
 
 @Component({
-  selector: 'app-images-list',
-  templateUrl: './images-list.component.html',
-  styleUrls: ['./images-list.component.scss']
+  selector: 'app-search-images',
+  templateUrl: './search-images.component.html',
+  styleUrls: ['./search-images.component.scss']
 })
-export class ImagesListComponent implements OnInit {
+export class SearchImagesComponent implements OnInit {
+  click = false;
   images$;
   filterForm: FormGroup;
   metadataImages: MetaDataImages; _metadataImages: Subscription;
@@ -31,6 +33,13 @@ export class ImagesListComponent implements OnInit {
       }
     );
   }
+
+  onSaveImage(image: Image) {
+    console.log('entro');
+    this.imagesFacade.saveImage(image)
+  }
+
+  onUnsaveImage(image: Image) { this.imagesFacade.unsaveImage(image) }
 
   onLoadMore() {
     if (this.metadataImages.next) {

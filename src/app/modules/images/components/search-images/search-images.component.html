@@ -1,0 +1,17 @@
+<div fxLayout="column">
+    <form *ngIf="this.filterForm" fxFlex="100" [formGroup]="filterForm" fxLayout="row" fxLayoutAlign="center"
+        class="mts-4">
+        <app-text-dynamic-input fxFlex="50" [name]="this.SEARCH_IMAGE" [form]="this.filterForm"
+            [label]="'Buscar imagen'" [icon]="'search'" [iconClass]="'text-secondary'"
+            [loadResources]="loadImagesByDescription" [appearance]="'outline'">
+        </app-text-dynamic-input>
+    </form>
+
+    <ng-container *ngIf="(this.images$ | async)">
+        <app-list-images [images]="(this.images$ | async)" (saveImage)="this.onSaveImage($event)"
+            (unsaveImage)="this.onUnsaveImage($event)">
+        </app-list-images>
+
+    </ng-container>
+    <button mat-button (click)="onLoadMore()">Cargar más</button>
+</div>

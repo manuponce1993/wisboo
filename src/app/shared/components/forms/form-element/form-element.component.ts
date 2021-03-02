@@ -11,6 +11,7 @@ export class FormElementComponent implements OnInit {
    @Input() name: string;
    @Input() label: string;
    @Input() icon: string;
+   @Input() iconClass: string;
    @Input() iconSvg: string;
    @Input() leftIcon: string;
    @Input() leftIconSvg: string;
