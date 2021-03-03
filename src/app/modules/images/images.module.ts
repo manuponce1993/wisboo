@@ -8,6 +8,8 @@ import { RootModule } from 'src/app/core/modules/root.module';
 import { FormsModule } from 'src/app/shared/components/forms/forms.module';
 import { AvatarModule } from 'ngx-avatar';
 import { ListImagesComponent } from './components/list-images/list-images.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { UtilsModule } from 'src/app/shared/components/utils/utils.module';
 
 @NgModule({
   declarations: [ImagesComponent, MyImagesComponent, SearchImagesComponent, ListImagesComponent],
@@ -16,7 +18,9 @@ import { ListImagesComponent } from './components/list-images/list-images.compon
     RootModule,
     ImagesRoutingModule,
     FormsModule,
-    AvatarModule
+    AvatarModule,
+    InfiniteScrollModule,
+    UtilsModule
   ]
 })
 export class ImagesModule { }
