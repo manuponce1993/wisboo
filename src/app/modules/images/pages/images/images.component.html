@@ -1,1 +1,13 @@
-Main Images Component
+<mat-tab-group class="pbs-2" (selectedTabChange)="this.actualTab = $event.index" [selectedIndex]="actualTab"
+    mat-align-tabs="center">
+    <mat-tab label="Buscar imágenes">
+        <div class="mxs-3">
+            <app-search-images [isVisibleScreen]="actualTab == this.IMAGES_TAB.SEARCH_IMAGES"></app-search-images>
+        </div>
+    </mat-tab>
+    <mat-tab label="Mis imágenes">
+        <div class="mxs-3">
+            <app-my-images></app-my-images>
+        </div>
+    </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,32 @@
+<div fxLayout="column">
+    <form *ngIf="this.filterForm" fxFlex="100" [formGroup]="filterForm" fxLayout="row" fxLayoutAlign="center"
+        class="mts-4">
+        <app-text-dynamic-input fxFlex="50" [name]="this.SEARCH_IMAGE" [form]="this.filterForm"
+            [label]="'Buscar imagen'" [icon]="'search'" [iconClass]="'text-secondary'"
+            [loadResources]="loadImagesByDescription" [appearance]="'outline'">
+        </app-text-dynamic-input>
+    </form>
+
+    <ng-container *ngIf="(this.images$ | async)?.length > 0; else noImagesAnimation">
+        <app-list-images infiniteScroll [infiniteScrollDistance]="1" (scrolled)="onLoadMore()"
+            [images]="(this.images$ | async)" (saveImage)="this.onSaveImage($event)"
+            (unsaveImage)="this.onUnsaveImage($event)">
+        </app-list-images>
+    </ng-container>
+    <div fxLayout="row" fxLayoutAlign="center" *ngIf="(isLoadingImages$ | async)">
+        <app-main-loading fxFlex.gt-sm=" 20" fxFlex.lt-md="50">
+        </app-main-loading>
+    </div>
+</div>
+
+<ng-template #noImagesAnimation>
+    <div *ngIf="!(isLoadingImages$ | async)" style="height: 60vh;" fxLayout="column" fxLayoutAlign="center center"
+        fxLayoutGap="10px">
+        <div fxLayoutAlign="center center">
+            <app-search fxFlex.gt-sm="30"></app-search>
+        </div>
+        <h2>
+            Encuentre sus imágenes favoritas de Unsplash
+        </h2>
+    </div>
+</ng-template>

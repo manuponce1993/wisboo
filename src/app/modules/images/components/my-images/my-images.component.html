@@ -1,1 +1,9 @@
-<p>my-images works!</p>
+<ng-container *ngIf="(this.myImages$ | async)?.length > 0; else emptyAnimation">
+    <app-list-images [images]="(this.myImages$ | async)" (unsaveImage)="this.onUnsaveImage($event)"></app-list-images>
+</ng-container>
+
+<ng-template #emptyAnimation>
+    <div fxLayoutAlign="center center" style="height: 80vh;">
+        <app-empty></app-empty>
+    </div>
+</ng-template>

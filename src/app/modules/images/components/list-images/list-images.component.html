@@ -1,0 +1,33 @@
+<div id="photos">
+    <div *ngFor="let image of images">
+        <div class="img_wrap" style="position: relative;">
+            <img class="img_img" [src]="image.urls.small">
+            <div class="img_description" [ngClass]="{'transition': image.likes < 1000}" fxLayout="row"
+                fxLayoutAlign="start center">
+                <ngx-avatar textSizeRatio="2" src="{{this.image.user.profile_image.small}}" size="35" class="mrs-2">
+                </ngx-avatar>
+                {{image.user.name}}
+            </div>
+            <div class="img_likes transition" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="mrs-1">thumb_up_alt
+                </mat-icon>
+                <span class="mat-caption">
+                    {{image.likes}}
+                </span>
+            </div>
+            <div class="img_trend transition" *ngIf="image.likes > 1000" fxLayout="row" fxLayoutAlign="start center">
+                <span class="mat-caption text-secondary">
+                    Destacada
+                </span>
+            </div>
+            <div class="img_save transition">
+                <button [matTooltip]="image.isSaved ? 'Eliminar': 'Guardar'" (click)="this.onSaveUnsaveImage(image)"
+                    mat-icon-button [color]="'primary'">
+                    <mat-icon>{{image.isSaved ? 'favorite' : 'favorite_border'}}</mat-icon>
+                </button>
+            </div>
+            <div class="img_overlay">
+            </div>
+        </div>
+    </div>
+</div>
