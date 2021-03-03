@@ -1,4 +1,9 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+enum IMAGES_TAB {
+  SEARCH_IMAGES,
+  MY_IMAGES
+}
 
 @Component({
   selector: 'app-images',
@@ -6,6 +11,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./images.component.scss']
 })
 export class ImagesComponent implements OnInit {
+  IMAGES_TAB = IMAGES_TAB;
+  actualTab: number = IMAGES_TAB.SEARCH_IMAGES;
 
   constructor() { }
 

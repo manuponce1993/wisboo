@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ImagesFacade } from 'src/app/abstraction/images.facade';
 import { Image } from 'src/app/shared/models/image';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-my-images',

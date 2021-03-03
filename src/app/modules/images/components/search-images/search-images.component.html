@@ -12,18 +12,21 @@
             [images]="(this.images$ | async)" (saveImage)="this.onSaveImage($event)"
             (unsaveImage)="this.onUnsaveImage($event)">
         </app-list-images>
-        <div fxLayout="row" fxLayoutAlign="center" *ngIf="(isLoadingImages$ | async)">
-            <app-main-loading fxFlex.gt-sm=" 20" fxFlex.lt-md="50">
-            </app-main-loading>
-        </div>
     </ng-container>
+    <div fxLayout="row" fxLayoutAlign="center" *ngIf="(isLoadingImages$ | async)">
+        <app-main-loading fxFlex.gt-sm=" 20" fxFlex.lt-md="50">
+        </app-main-loading>
+    </div>
 </div>
 
 <ng-template #noImagesAnimation>
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <div *ngIf="!(isLoadingImages$ | async)" style="height: 60vh;" fxLayout="column" fxLayoutAlign="center center"
+        fxLayoutGap="10px">
         <div fxLayoutAlign="center center">
             <app-search fxFlex.gt-sm="30"></app-search>
         </div>
-        <!-- <span>Buscar imágenes</span> -->
+        <h2>
+            Encuentre sus imágenes favoritas de Unsplash
+        </h2>
     </div>
 </ng-template>
