@@ -7,11 +7,23 @@
         </app-text-dynamic-input>
     </form>
 
-    <ng-container *ngIf="(this.images$ | async)">
-        <app-list-images [images]="(this.images$ | async)" (saveImage)="this.onSaveImage($event)"
+    <ng-container *ngIf="(this.images$ | async)?.length > 0; else noImagesAnimation">
+        <app-list-images infiniteScroll [infiniteScrollDistance]="1" (scrolled)="onLoadMore()"
+            [images]="(this.images$ | async)" (saveImage)="this.onSaveImage($event)"
             (unsaveImage)="this.onUnsaveImage($event)">
         </app-list-images>
-
+        <div fxLayout="row" fxLayoutAlign="center" *ngIf="(isLoadingImages$ | async)">
+            <app-main-loading fxFlex.gt-sm=" 20" fxFlex.lt-md="50">
+            </app-main-loading>
+        </div>
     </ng-container>
-    <button mat-button (click)="onLoadMore()">Cargar más</button>
 </div>
+
+<ng-template #noImagesAnimation>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div fxLayoutAlign="center center">
+            <app-search fxFlex.gt-sm="30"></app-search>
+        </div>
+        <!-- <span>Buscar imágenes</span> -->
+    </div>
+</ng-template>

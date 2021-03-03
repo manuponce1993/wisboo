@@ -1,9 +1,11 @@
 <div style="min-height: 100vh;">
     <mat-tab-group [disableRipple]="true" mat-align-tabs="center">
         <mat-tab label="Buscar imágenes">
-            <app-search-images class="mxs-2"></app-search-images>
+            <div class="mxs-3">
+                <app-search-images></app-search-images>
+            </div>
         </mat-tab>
-        <mat-tab label="Mis imágenes" class="ps-2">
+        <mat-tab label="Mis imágenes">
             <div class="mxs-3">
                 <app-my-images></app-my-images>
             </div>

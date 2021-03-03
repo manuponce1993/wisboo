@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { ImagesFacade, MetaDataImages } from 'src/app/abstraction/images.facade';
 import { Image } from 'src/app/shared/models/image';
 
@@ -11,7 +11,8 @@ import { Image } from 'src/app/shared/models/image';
 })
 export class SearchImagesComponent implements OnInit {
   click = false;
-  images$;
+  images$: Observable<Image[]>;
+  isLoadingImages$: Observable<boolean>;
   filterForm: FormGroup;
   metadataImages: MetaDataImages; _metadataImages: Subscription;
   public readonly SEARCH_IMAGE = 'query';
@@ -20,7 +21,9 @@ export class SearchImagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterForm = this.createFilterForm();
-    this.images$ = this.imagesFacade.getImages$()
+    this.images$ = this.imagesFacade.getImages$();
+    this.isLoadingImages$ = this.imagesFacade.isLoadingGettingImages$();
+
     this._metadataImages = this.imagesFacade.getMetaDataImages$().subscribe(
       mdi => this.metadataImages = mdi
     );

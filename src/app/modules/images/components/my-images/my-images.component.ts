@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagesFacade } from 'src/app/abstraction/images.facade';
 import { Image } from 'src/app/shared/models/image';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-my-images',
@@ -9,7 +10,7 @@ import { Image } from 'src/app/shared/models/image';
 })
 export class MyImagesComponent implements OnInit {
 
-  myImages$;
+  myImages$: Observable<Image[]>;
 
   constructor(private imagesFacade: ImagesFacade) { }
 

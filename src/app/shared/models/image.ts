@@ -4,5 +4,6 @@ export interface Image {
    isSaved: boolean,
    urls: any,
    user: any,
+   likes: number,
 
 }
