@@ -9,9 +9,9 @@ import { startWith, map, filter, debounce, tap, switchAll, finalize } from 'rxjs
    styleUrls: ['./text-dynamic-input.component.scss'],
 })
 export class TextDynamicInputComponent extends FormElementComponent implements OnInit {
+   @Input() loadResources: (value: string) => Observable<any>;
    @Input() maxLength: number;
    @Input() clearable = false;
-   @Input() loadResources: (value: string) => Observable<any>;
    @Output() enter = new EventEmitter();
 
    searchingSpinner: boolean = false
@@ -37,8 +37,8 @@ export class TextDynamicInputComponent extends FormElementComponent implements O
             map(value => { return this.loadResources(value) }),
             switchAll(),
             finalize(() => { this.searchingSpinner = false }),
-         ).subscribe(values => {
-            this.searchingSpinner = false
+         ).subscribe(_ => {
+            this.searchingSpinner = false;
          });
    }
 }

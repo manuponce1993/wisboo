@@ -29,7 +29,7 @@ export class HttpInterceptor implements _HttpInterceptor {
             if (response instanceof HttpResponse) {
                const headerLink: string = response.headers.get('link');
                if (!!headerLink) {
-                  // Set links as query params objects on body
+                  // Map property "links" from query params to objects on response
                   const linksByComma: string[] = headerLink.split(',');
                   const links: { [x: string]: {} }[] = linksByComma.map(link => {
                      let [url, rel] = link.split(';');
